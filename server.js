@@ -4,6 +4,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 
+
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -15,8 +16,7 @@ app.use(bodyParser.json());
 
 // Star Wars Characters (DATA)
 // =============================================================
-var friends = [
-];
+var friends = require("./app/data/friends.js")
 
 var waitList = [
 ];
@@ -33,9 +33,9 @@ app.get("/survey", function(req, res) {
   res.sendFile(path.join(__dirname, "app/public/survey.html"));
 });
 
-app.get("/tables", function(req, res) {
-  res.sendFile(path.join(__dirname, "tables.html"));
-});
+// app.get("/tables", function(req, res) {
+//   res.sendFile(path.join(__dirname, "tables.html"));
+// });
 
 // Show the list of friends
 app.get("/api/friends", function(req, res) {  
@@ -43,26 +43,26 @@ app.get("/api/friends", function(req, res) {
 });
 
 // Show the wait list
-app.get("/api/waitlist", function(req, res) {  
-  return res.json(waitList);
-});
+// app.get("/api/waitlist", function(req, res) {  
+//   return res.json(waitList);
+// });
 
-app.post("/api/clear", function(req, res) {
-  friends = [];
-  waitList = [];
-});
+// app.post("/api/clear", function(req, res) {
+//   friends = [];
+//   waitList = [];
+// });
 
 // Create new friends - takes in JSON input
-app.post("/api/tables", function(req, res) {
+app.post("/api/friends", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
-  var newReservation = req.body;
+  var newFriend = req.body;
 
-  console.log(newReservation);
+  console.log(newFriend);
   if (friends.length < 5) {
-    friends.push(newReservation);
+    friends.push(newFriend);
     res.json(true);
   } else {
-    waitList.push(newReservation);
+    waitList.push(newFriend);
     res.json(false);
   }
 });
