@@ -56,15 +56,41 @@ app.get("/api/friends", function(req, res) {
 app.post("/api/friends", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   var newFriend = req.body;
+  var diffTotals = [];
 
-  console.log(newFriend);
-  if (friends.length < 5) {
-    friends.push(newFriend);
-    res.json(true);
-  } else {
-    waitList.push(newFriend);
-    res.json(false);
+  for (var i = 0; i < friends.length; i++) {
+    var diffScores = [];
+    for (var j = 0; j < friends[i].scores.length; j++) {
+      var diffScore = parseInt(friends[i].scores[j]) - parseInt(newFriend.scores[j]);
+      if (diffScore < 0) {
+        diffScore *= -1;
+      }
+      diffScores.push(diffScore);
+    }
+    var totalDiff = 0;
+    for (var k = 0; k < diffScores.length; k++) {
+      totalDiff += diffScores[k];
+    }
+    diffTotals.push(totalDiff);
   }
+
+  var closestScore = diffTotals[0];
+  var index = 0;
+  for (var l = 1; l<diffTotals.length; l++) {
+    if (diffTotals[l] < closestScore) {
+      index = l;
+    }
+  }
+
+  res.json(friends[index]);
+  // console.log(newFriend);
+  // if (friends.length < 5) {
+  //   friends.push(newFriend);
+  //   res.json(true);
+  // } else {
+  //   waitList.push(newFriend);
+  //   res.json(false);
+  // }
 });
 
 // Starts the server to begin listening
