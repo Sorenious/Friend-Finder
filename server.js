@@ -26,20 +26,20 @@ var waitList = [
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "hot.restaurant.html"));
+  res.sendFile(path.join(__dirname, "app/public/index.html"));
 });
 
-app.get("/form", function(req, res) {
-  res.sendFile(path.join(__dirname, "form.html"));
+app.get("/survey", function(req, res) {
+  res.sendFile(path.join(__dirname, "app/public/survey.html"));
 });
 
 app.get("/tables", function(req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-// Show the list of table reservations
-app.get("/api/tables", function(req, res) {  
-  return res.json(reservations);
+// Show the list of friends
+app.get("/api/friends", function(req, res) {  
+  return res.json(friends);
 });
 
 // Show the wait list
@@ -48,18 +48,18 @@ app.get("/api/waitlist", function(req, res) {
 });
 
 app.post("/api/clear", function(req, res) {
-  reservations = [];
+  friends = [];
   waitList = [];
 });
 
-// Create new reservations - takes in JSON input
+// Create new friends - takes in JSON input
 app.post("/api/tables", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   var newReservation = req.body;
 
   console.log(newReservation);
-  if (reservations.length < 5) {
-    reservations.push(newReservation);
+  if (friends.length < 5) {
+    friends.push(newReservation);
     res.json(true);
   } else {
     waitList.push(newReservation);
