@@ -61,7 +61,7 @@ app.post("/api/friends", function(req, res) {
   for (var i = 0; i < friends.length; i++) {
     var diffScores = [];
     for (var j = 0; j < friends[i].scores.length; j++) {
-      var diffScore = parseInt(friends[i].scores[j]) - parseInt(newFriend.scores[j]);
+      var diffScore = parseInt(friends[i].scores[j]) - parseInt(newFriend["scores[]"][j]);
       if (diffScore < 0) {
         diffScore *= -1;
       }
@@ -81,7 +81,7 @@ app.post("/api/friends", function(req, res) {
       index = l;
     }
   }
-
+  friends.push(newFriend);
   res.json(friends[index]);
   // console.log(newFriend);
   // if (friends.length < 5) {
