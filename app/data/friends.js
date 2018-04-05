@@ -112,22 +112,6 @@ var friends = [
 		]
 	},
 	{
-		name: "jsdfdfsfds",
-		photo: "fsddfsdfdd",
-		scores: [
-			"1",
-			"1",
-			"1",
-			"1",
-			"1",
-			"1",
-			"1",
-			"1",
-			"1",
-			"1"
-		]
-	},
-	{
 		name: "Toffer",
 		photo: "https://www.facebook.com/photo.php?fbid=10211928502381372&set=a.1531209913631.2078345.1036257137&type=3&theater",
 		scores: [
@@ -141,22 +125,6 @@ var friends = [
 			"3",
 			"5",
 			"4"
-		]
-	},
-	{
-		name: "jjj",
-		photo: "jjj",
-		scores: [
-			"2",
-			"2",
-			"3",
-			"3",
-			"3",
-			"2",
-			"4",
-			"3",
-			"2",
-			"3"
 		]
 	}
 ];
